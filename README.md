@@ -1,1 +1,1 @@
-# gauss2.0
+# Segundo Trabalho de programação Concorrente
