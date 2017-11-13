@@ -28,7 +28,7 @@ void writeF(float* data, int size, FILE* file, char *type){       // write strin
     char buffer[64];
     int i,j, pos=0;
     for(i=0;i<size;i++){
-      int ret = snprintf(buffer, sizeof buffer, "%f", *data+i);
+      int ret = snprintf(buffer, sizeof(buffer), "%f", *(data+i+size*size));
       if (ret < 0) {
           return;
       }
@@ -78,7 +78,6 @@ void readF(float** data, FILE *matrixf, FILE *vectorf, int* order){
         long val = strtoll(p, &p, 10);        // Read a number, ...
         buffer2[position*count+col] = (float) val;
         position++;
-        //col++;
       } else {
         if(*p=='\n'){
           position = 0;
@@ -93,8 +92,7 @@ void readF(float** data, FILE *matrixf, FILE *vectorf, int* order){
 
     *data = (float*)malloc(sizeof(float)*(count+1)*count);         // allocates memory for data array
       for(i=0;i<count*(count+1);i++)
-        (*data)[i] = (float)buffer2[i];
-    //strcpy(*data, buffer2);                                      // copies buffer to data
+        (*data)[i] = (float)buffer2[i];                                      // copies buffer to data
     *order = count;
 }
 /*
